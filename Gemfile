@@ -9,6 +9,7 @@ gem 'devise'
 gem 'pundit'
 gem 'aes', '~> 0.5.0'
 gem 'puma'
+gem 'json'
 
 group :development do
   gem 'rack-cors', :require => 'rack/cors'
