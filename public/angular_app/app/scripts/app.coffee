@@ -1,5 +1,6 @@
 'use strict'
 
+//added test comment
 ebenezerApp = angular.module('ebenezerApp', [
   'ngResource', 'ngSanitize',
   'ngAnimate', 'fx.animations','ngRoute', 
