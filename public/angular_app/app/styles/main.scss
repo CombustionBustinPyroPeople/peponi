@@ -1,0 +1,31 @@
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans);
+
+$icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
+
+$font-family-sans-serif: 'Droid Sans', sans-serif;
+$border-radius-base: 0px;
+
+@import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+
+// bower:scss
+@import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
+// endbower
+
+@import "buttons";
+
+/* Space out content a bit */
+body {
+  background-color: #6BB9F0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.well {
+  background-color: #34495E;
+  color: whitesmoke;
+  border: none;
+}
+
+input {
+  color: #040404;
+}
