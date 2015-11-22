@@ -1,5 +1,10 @@
 //this factory will manage the bulk of shipment data
 "use strict";
+/*
+ _    _    __    ____  _  _  ____  _  _  ___      ___  ____   __    ___  _   _  ____  ____  ____  ____     ___  _____  ____  ____ 
+( \/\/ )  /__\  (  _ \( \( )(_  _)( \( )/ __)()  / __)(  _ \ /__\  / __)( )_( )( ___)(_  _)(_  _)(_  _)   / __)(  _  )(  _ \( ___)
+ )    (  /(__)\  )   / )  (  _)(_  )  (( (_-.    \__ \ )___//(__)\( (_-. ) _ (  )__)   )(    )(   _)(_   ( (__  )(_)(  )(_) ))__) 
+(__/\__)(__)(__)(_)\_)(_)\_)(____)(_)\_)\___/()  (___/(__) (__)(__)\___/(_) (_)(____) (__)  (__) (____)   \___)(_____)(____/(____)
 
 // icon object format: 
 /* 
@@ -22,26 +27,6 @@ angular.module('myApp.view1').factory("MapFactory",
     possDamage: "assets/warningSign.png",
     good: "assets/checkmark.png"
   };
-  var contentString = '<div id="content">'+
-      '<div id="siteNotice">'+
-      '</div>'+
-      '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
-      '<div id="bodyContent">'+
-      '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-      'sandstone rock formation in the southern part of the '+
-      'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-      'south west of the nearest large town, Alice Springs; 450&#160;km '+
-      '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-      'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-      'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-      'Aboriginal people of the area. It has many springs, waterholes, '+
-      'rock caves and ancient paintings. Uluru is listed as a World '+
-      'Heritage Site.</p>'+
-      '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-      'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-      '(last visited June 22, 2009).</p>'+
-      '</div>'+
-      '</div>';
   MapFactory.loadMapApi = function(){
     console.log("LOAD MAP API CALLED");
     var context = this;
@@ -92,7 +77,7 @@ angular.module('myApp.view1').factory("MapFactory",
       var icon = {url: chooseMarker(shipment)};
       //TODO: refactor later into helper function this is ridiculous
       _.assign(icon, context.iconDefaults);
-      return {latitude: shipment.lat, longitude: shipment.lng, id: index, icon: icon};
+      return new context.google.Marker({latitude: shipment.lat, longitude: shipment.lng, id: index, icon: icon, mirror: shipment});
     });
   };
   MapFactory.formatInfoWindows = function(shipments){
@@ -103,24 +88,17 @@ angular.module('myApp.view1').factory("MapFactory",
     return context.infoWindows = _.map(shipments, function(shipment, index){
       console.log("shipments in hurr: ", shipment);
       //NOTE: refactor into directive this is hideous
+      //TODO: make not hideous (refactor into custom directive)
       var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
       '<h1 id="firstHeading" class="firstHeading">'+ shipment.bol + '</h1>'+
       '<div id="bodyContent">'+
-      '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-      'sandstone rock formation in the southern part of the '+
-      'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-      'south west of the nearest large town, Alice Springs; 450&#160;km '+
-      '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-      'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-      'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-      'Aboriginal people of the area. It has many springs, waterholes, '+
-      'rock caves and ancient paintings. Uluru is listed as a World '+
-      'Heritage Site.</p>'+
-      '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-      'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-      '(last visited June 22, 2009).</p>'+
+      '<p><b>Late: </b> <b>'+ shipment.isLate + '</b></p>'+
+      '<p><b>Possible Damage: </b> <b>'+ shipment.hasDamaged + '</b></p>'+
+      '<p><b>Separated: </b> <b>'+ shipment.hasSeparated + '</b></p>'+
+      '<p><b>Destination: </b> <b>'+ shipment.destination.name + '</b></p>'+
+      '<p><b>Origin: </b> <b>'+ shipment.origin.name + '</b></p>'+
       '</div>'+
       '</div>';
       //var icon = {url: chooseMarker(shipment)};
@@ -130,7 +108,8 @@ angular.module('myApp.view1').factory("MapFactory",
                 lat: shipment.lat,
                 lng: shipment.lng},
                 id: index, 
-                content: contentString});
+                content: contentString,
+                disableAutoPan: true});
     });
   };
 
@@ -138,29 +117,6 @@ angular.module('myApp.view1').factory("MapFactory",
     MapFactory.mapReference = map;
   };
   //stubbed out events in case someone wants to do stuff
-  MapFactory.events = {
-    click: function(marker, eventName, args){
-      // this is where we would center the map on this marker, show it's history (make a get request),
-      // and also make api calls based on it's total journey
-      //console.log("clicked on ", marker.get(id));
-      var markerIndex = marker.model.id;
-      console.log("context.infoWindows: ", MapFactory.infoWindows);
-      console.log("context: ", MapFactory);
-
-      MapFactory.infoWindows[markerIndex].open(MapFactory.mapReference, marker);
-
-    },
-    mouseover: function(marker, eventName, args){
-      // this might show a slight visual (like an outline?) and an at-a-glance view of the status.
-      console.log("mouseover ", marker.model.id);
-    },
-    mouseout: function(marker, eventName, args){
-      // corrolary to mouseover
-      console.log("mouseout ", marker);
-    }
-
-
-  };
 
   return MapFactory;
 }]);

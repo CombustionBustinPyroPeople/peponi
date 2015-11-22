@@ -1,9 +1,11 @@
 <div class="wrapper">
   <p>Main view, maps and everything goes here</p>
   <ui-gmap-google-map center='main.map.center' zoom='main.map.zoom' control='main.control'>
-    <ui-gmap-markers models="main.markers" coords="'self'" icon="'icon'" events="main.mapObj.events">
+    <ui-gmap-markers models="main.markers" coords="'self'" icon="'icon'" events="main.events">
       <ui-gmap-windows show="show">
       </ui-gmap-windows>
     </ui-gmap-markers>
+    <ui-gmap-polyline ng-repeat="p in main.polylines" path="p.path" stroke="p.stroke" visible='p.visible'
+                  geodesic='p.geodesic' fit="false" icons='p.icons'></ui-gmap-polyline>
   </ui-gmap-google-map>
 </div>
