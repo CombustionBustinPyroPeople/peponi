@@ -8,7 +8,7 @@ module Api
         pallets = []
         ids = shipment.device_ids.split(",")
         ids.each do |device_id|
-          p = Pallet.where(:device_id => device_id)
+          p = Pallet.where(:device_id => device_id).last
           pallets.push(p) if p.present?
         end
         hash = shipment.as_json
