@@ -30,7 +30,7 @@ shipments: [
   {
     receiver: "Chandra Industries",
     destination: "Chicago, IL",
-    orign: "New York, NY",
+    origin: "New York, NY",
     description: "Large shipment of rubies, delivered via rail",
     bol: 1111,
     custody: "Ian's Solid Shipping Service",
@@ -64,7 +64,7 @@ shipments: [
   {
     receiver: "Ricco Motors",
     destination: "San Jose, CA",
-    orign: "Washington, DC",
+    origin: "Washington, DC",
     description: "Batteries n shit",
     bol: 2222,
     custody: "Brendan's Shitty Rickshaw Deliveries",
@@ -96,7 +96,7 @@ shipments: [
   {
     receiver: "Allie's Soccer Supply",
     destination: "Portland, OR",
-    orign: "Austin, TX",
+    origin: "Austin, TX",
     description: "Size 5 regulation soccer balls, uninflated",
     bol: 3333,
     custody: "Toby's Terrifying Go-Kart Deliveries",
@@ -129,7 +129,7 @@ shipments: [
   {
     receiver: "Ian's Painting Emporium",
     destination: "Whitefish, MT",
-    orign: "Los Angeles, CA",
+    origin: "Los Angeles, CA",
     description: "Ultra-toxic oil paints",
     bol: 3333,
     custody: "Neeraj's Tailgate-less Flatbed Truck",

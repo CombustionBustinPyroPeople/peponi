@@ -8,50 +8,30 @@ angular.module('myApp.view1', ['ngRoute'])
     controller: 'MainCtrl as main'
   });
 }])
-.controller('MainCtrl', ['uiGmapGoogleMapApi','ShipmentFactory','MapFactory', '$q', function(uiGmapGoogleMapApi, ShipmentFactory, MapFactory, $q) {
+.controller('MainCtrl', ['uiGmapGoogleMapApi','ShipmentFactory','MapFactory', '$q', 'uiGmapIsReady', 
+  function(uiGmapGoogleMapApi, ShipmentFactory, MapFactory, $q, uiGmapIsReady) {
   //"vm" is shorthand for "View-Model", and stores our context and cleans up our code a bit (in theory)
   var vm = this;
   //this waits until:
   // 1) the google map api and it's dependencies are ready
   // 2) the markers have loaded up
   vm.mapObj = MapFactory;
-  $q.all([uiGmapGoogleMapApi, ShipmentFactory.getAllShipments()]).then(function() {
+  vm.control = {};
+  $q.all([MapFactory.loadMapApi(), ShipmentFactory.getAllShipments()]).then(function() {
     vm.markers = MapFactory.formatMarkers(ShipmentFactory.shipments);
     vm.map = vm.mapObj.map;
+    //console.log("$scope: ", $scope);
   });
-
-
-  // vm.marker = {
-  //     id: 0,
-  //     coords: {
-  //       latitude: 40.1451,
-  //       longitude: -99.6680
-  //     },
-  //     options: { draggable: true },
-  //     events: {
-  //       dragend: function (marker, eventName, args) {
-  //         //$log.log('marker dragend');
-  //         var lat = marker.getPosition().lat();
-  //         var lon = marker.getPosition().lng();
-  //         //$log.log(lat);
-  //         //$log.log(lon);
-  //         console.log("lat: ", lat);
-
-  //         // $scope.marker.options = {
-  //         //   draggable: true,
-  //         //   labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
-  //         //   labelAnchor: "100 0",
-  //         //   labelClass: "marker-labels"
-  //         // };
-  //       },
-
-  //     }
-  //   };
-
-
-  // MapFactory.getMarkers().then(function(){
-  //   vm.shipments = MapFactory.shipments;
-  // });
+  //some bullsh*t to grab a reference to the map. I pass the reference to my factory from the controller.
+  //This is most likely not a good practice. We'll also be adding info windows here because we need a map
+  // reference and also because fk it
+  uiGmapIsReady.promise().then(function (maps) {
+        console.log("in thing!");
+        console.log("is there thing?", maps);
+        var map1 = vm.control.getGMap();
+        MapFactory.setMap(map1);
+        vm.infoWindows = MapFactory.formatInfoWindows(ShipmentFactory.shipments);
+  });
 }]);
 
 // var dummyData = {
