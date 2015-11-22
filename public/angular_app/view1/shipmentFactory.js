@@ -3,13 +3,13 @@
 angular.module('myApp.view1').factory("ShipmentFactory", ['RequestFactory','$q',function(RequestFactory, $q){
   var ShipmentFactory = {};
   
-  // ShipmentFactory.getAllShipments = function(){
-  //   console.log("in get getAllShipments");
-  //   var context = this;
-  //   return RequestFactory.getAllShipments().then(function(data){
-  //     context.shipments = data.shipments;
-  //   });
-  // };
+  ShipmentFactory.getActualShipments = function(){
+    console.log("in get getAllShipments");
+    var context = this;
+    return RequestFactory.getAllShipments().then(function(data){
+      context.actualShipments = data;
+    });
+  };
   //stub for loading dummy data, REMOVE WHEN HOOKED TO DA BACKEND
   ShipmentFactory.getAllShipments = function(){
     var context = this;

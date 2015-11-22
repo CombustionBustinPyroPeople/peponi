@@ -6,7 +6,7 @@ angular.module('myApp.services', [])
   RequestFactory.getAllPossiblePreferences = function(){
     return $http({
       method: 'GET',
-      url: '/api/shipments',
+      url: '/api/v1/shipments',
     }).then(function(res){
       console.log('got shipments data!');
       console.log('shipments data: ', res.data);

@@ -96,6 +96,10 @@ angular.module('myApp.view1', ['ngRoute'])
         ];
     console.log("polyline: ", vm.polyline);
   };
+  ShipmentFactory.getActualShipments().then(function(){
+    vm.actualShipments = ShipmentFactory.actualShipments;
+    console.log("actualShipments: ", vm.actualShipments);
+  });
   //these events get added to the custom directive.
   vm.events = {
     click: function(marker, eventName, args){
