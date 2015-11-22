@@ -4,12 +4,15 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.4'
 
 gem 'rails-api'
-gem 'sqlite3'
 gem 'devise'
 gem 'pundit'
 gem 'aes', '~> 0.5.0'
 gem 'puma'
 gem 'json'
+
+gem 'activerecord-sqlserver-adapter'
+gem 'tiny_tds', '0.6.3.rc2'
+gem 'sqlite3'
 
 group :development do
   gem 'rack-cors', :require => 'rack/cors'
@@ -25,7 +28,7 @@ group :test do
   gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner'
 end
 
-ruby "2.1.2" #for rvm / heroku
+ruby "2.1.2"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

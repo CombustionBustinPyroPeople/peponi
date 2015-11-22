@@ -11,34 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140427131234) do
+ActiveRecord::Schema.define(version: 20151122004808) do
 
-  create_table "posts", force: true do |t|
-    t.string   "title"
-    t.text     "body"
-    t.integer  "user_id"
-    t.date     "recorded_on"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "pallets", force: true do |t|
+    t.string  "name"
+    t.integer "weight"
+    t.integer "height"
+    t.integer "width"
+    t.boolean "isDamaged",              null: false
+    t.boolean "isSeparated",            null: false
+    t.float   "latitude",    limit: 24
+    t.float   "longitude",   limit: 24
   end
 
-  create_table "users", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "authentication_token",   default: "", null: false
+  create_table "shipments", force: true do |t|
+    t.string  "name"
+    t.string  "receiver"
+    t.string  "destination"
+    t.string  "description"
+    t.integer "bol"
+    t.string  "custody"
+    t.boolean "hasDamaged",              null: false
+    t.boolean "hasSeparated",            null: false
+    t.boolean "isLate",                  null: false
+    t.float   "latitude",     limit: 24
+    t.float   "longitude",    limit: 24
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end
