@@ -71,11 +71,12 @@ psuedo element with clearfix and display: table; , all after (which is why I kno
    border-radius: 2px 2px 0 0; /* In accordance with the rounding of the default infowindow corners. */
 }
 body {
-background: #1e5799;
-background: -moz-linear-gradient(-45deg,  #1e5799 0%, #207cca 31%, #207cca 32%, #2989d8 72%, #2989d8 72%, #2989d8 72%, #7db9e8 100%);
+background-image: url("../assets/bg.jpg");
+/*background: #1e5799;*/
+/*background: -moz-linear-gradient(-45deg,  #1e5799 0%, #207cca 31%, #207cca 32%, #2989d8 72%, #2989d8 72%, #2989d8 72%, #7db9e8 100%);
 background: -webkit-linear-gradient(-45deg,  #1e5799 0%,#207cca 31%,#207cca 32%,#2989d8 72%,#2989d8 72%,#2989d8 72%,#7db9e8 100%);
 background: linear-gradient(135deg,  #1e5799 0%,#207cca 31%,#207cca 32%,#2989d8 72%,#2989d8 72%,#2989d8 72%,#7db9e8 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=1 );
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=1 );*/
 }
 .mapWrapper {
   border-style: solid;

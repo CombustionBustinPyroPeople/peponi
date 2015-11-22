@@ -110,6 +110,7 @@ angular.module('myApp.view1').factory("MapFactory",
       //var icon = {url: chooseMarker(shipment)};
       //TODO: refactor later into helper function this is ridiculous
       //_.assign(icon, context.iconDefaults);
+
       return new context.google.InfoWindow({position: {
                 lat: shipment.lat,
                 lng: shipment.lng},
