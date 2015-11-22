@@ -3,7 +3,7 @@ angular.module('myApp.services', [])
 .factory('RequestFactory', ['$http',function($http) {
   var RequestFactory = {};
   //This endpoint should give me an array of ALL possible preferences
-  RequestFactory.getAllPossiblePreferences = function(){
+  RequestFactory.getAllShipments = function(){
     return $http({
       method: 'GET',
       url: '/api/v1/shipments',
