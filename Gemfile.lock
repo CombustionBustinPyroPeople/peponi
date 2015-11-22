@@ -27,6 +27,9 @@ GEM
       activemodel (= 4.1.4)
       activesupport (= 4.1.4)
       arel (~> 5.0.0)
+    activerecord-sqlserver-adapter (4.1.2)
+      activerecord (~> 4.1.0)
+      arel
     activesupport (4.1.4)
       i18n (~> 0.6, >= 0.6.9)
       json (~> 1.7, >= 1.7.7)
@@ -59,6 +62,7 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.2)
     mime-types (1.25.1)
+    mini_portile (0.6.2)
     minitest (5.4.0)
     multi_json (1.10.1)
     orm_adapter (0.5.0)
@@ -122,6 +126,8 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
+    tiny_tds (0.6.3.rc2)
+      mini_portile (= 0.6.2)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -134,6 +140,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-sqlserver-adapter
   aes (~> 0.5.0)
   database_cleaner!
   devise
@@ -147,3 +154,4 @@ DEPENDENCIES
   rails-api
   rspec-rails
   sqlite3
+  tiny_tds (= 0.6.3.rc2)
