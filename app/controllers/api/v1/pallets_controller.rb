@@ -1,46 +1,26 @@
 module Api
   module V1
     class PalletsController < ApplicationController
-      def index
-        pallets = Pallet.find_each do |p|
-          p
+
+      def get
+        id = params[:id].to_i
+        pallet = Pallet.find(id)
+        shipment = nil
+        Shipment.find_each do |s|
+          ids = s.device_ids.split(",")
+          ids.each do |id|
+            shipment = s if id == pallet.device_id
+          end
         end
-        puts "pallets = #{pallets}"
-        render json: pallets
+
+        hash = pallet.as_json
+        hash[:shipment] = shipment.as_json
+        return json: hash
       end
 
-      def show
-        pallet = Pallet.find(params[:id])
-        render json: pallet
-      end
-
-      def create
-        pallets = Pallet.new(pallet_params)
-        if pallet.save
-          render json: pallet, status: :created, location: api_v1_pallet_path(pallet)
-        else
-          render json: pallet.errors, status: :unprocessable_entity
-        end
-      end
-
-      def update
-        pallet = Pallet.find(params[:id])
-        if pallet.update(pallet_params)
-          render json: pallet
-        else
-          render json: pallet.errors, status: :unprocessable_entity
-        end
-      end
-
-      def destroy
-        pallet = Pallet.find(params[:id])
-        pallet.destroy
-        head :no_content
-      end
-
-      private
-      def pallet_params
-        params.require(:pallet).permit(:name, :longitude, :latitude, :is_active)
+      def get_all
+        pallets = Pallet.all
+        return json: pallets
       end
     end
   end
