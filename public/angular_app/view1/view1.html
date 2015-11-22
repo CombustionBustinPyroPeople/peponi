@@ -1,4 +1,7 @@
 <div class="wrapper">
   <p>Main view, maps and everything goes here</p>
-  <ui-gmap-google-map center='main.map.center' zoom='main.map.zoom'></ui-gmap-google-map>
+  <ui-gmap-google-map center='main.map.center' zoom='main.map.zoom'>
+    <ui-gmap-markers models="main.markers" coords="'self'" icon="'icon'" events="main.mapObj.events">
+    </ui-gmap-markers>
+  </ui-gmap-google-map>
 </div>
