@@ -21,12 +21,6 @@ angular.module('myApp.view1').factory("MapFactory",
   ['uiGmapGoogleMapApi', function(uiGmapGoogleMapApi){
   var MapFactory = {};
   var context = this;
-  MapFactory.iconUrls = {
-    late: "assets/clock.png",
-    separated: "assets/brokenHeart.png",
-    possDamage: "assets/warningSign.png",
-    good: "assets/checkmark.png"
-  };
   MapFactory.loadMapApi = function(){
     console.log("LOAD MAP API CALLED");
     var context = this;
@@ -35,7 +29,7 @@ angular.module('myApp.view1').factory("MapFactory",
       context.google = obj;
       console.log("is this a thing? ", context.google);
       //size in pixels #stayDry
-      var size = 75;
+      var size = 50;
       context.iconDefaults = {
           anchor: new context.google.Point(size/2,size/2),
           scaledSize: new context.google.Size(size, size)
@@ -89,12 +83,24 @@ angular.module('myApp.view1').factory("MapFactory",
       console.log("shipments in hurr: ", shipment);
       //NOTE: refactor into directive this is hideous
       //TODO: make not hideous (refactor into custom directive)
+
+      var content = '<div id="iw-container">' +
+                    '<div class="iw-title">BOL #: '+ shipment.bol + '</div>' +
+                    '<div class="iw-content">' +
+                      '<p>Receiver: '+ shipment.receiver + '<br>' + 
+                      '<p><b>Late: <b>'+ shipment.isLate + '<br>' + 
+                      '<p>VISTA ALEGRE ATLANTIS, SA<br>3830-292 Ílhavo - Portugal<br>'+
+                      '<br>Phone. +351 234 320 600<br>e-mail: geral@vaa.pt<br>www: www.myvistaalegre.com</p>'+
+                    '</div>' +
+                    '<div class="iw-bottom-gradient"></div>' +
+                  '</div>';
+
       var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
       '<h1 id="firstHeading" class="firstHeading">'+ shipment.bol + '</h1>'+
       '<div id="bodyContent">'+
-      '<p><b>Late: </b> <b>'+ shipment.isLate + '</b></p>'+
+      '<p><b>Late: </b> <b>'+  + '</b></p>'+
       '<p><b>Possible Damage: </b> <b>'+ shipment.hasDamaged + '</b></p>'+
       '<p><b>Separated: </b> <b>'+ shipment.hasSeparated + '</b></p>'+
       '<p><b>Destination: </b> <b>'+ shipment.destination.name + '</b></p>'+
@@ -108,7 +114,7 @@ angular.module('myApp.view1').factory("MapFactory",
                 lat: shipment.lat,
                 lng: shipment.lng},
                 id: index, 
-                content: contentString,
+                content: content,
                 disableAutoPan: true});
     });
   };

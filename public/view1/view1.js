@@ -61,7 +61,7 @@ angular.module('myApp.view1', ['ngRoute'])
                 visible: true,
                 icons: [{
                     icon: {
-                        path: MapFactory.google.SymbolPath.BACKWARD_OPEN_ARROW
+                        path: MapFactory.google.SymbolPath.FORWARD_OPEN_ARROW
                     },
                     offset: '25px',
                     repeat: '50px'
@@ -87,7 +87,7 @@ angular.module('myApp.view1', ['ngRoute'])
                 visible: true,
                 icons: [{
                     icon: {
-                        path: google.maps.SymbolPath.BACKWARD_OPEN_ARROW
+                        path: google.maps.SymbolPath.FORWARD_OPEN_ARROW
                     },
                     offset: '25px',
                     repeat: '50px'
