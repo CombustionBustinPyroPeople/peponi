@@ -11,17 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151122004808) do
+ActiveRecord::Schema.define(version: 20151122024946) do
 
   create_table "pallets", force: true do |t|
     t.string  "name"
     t.integer "weight"
     t.integer "height"
     t.integer "width"
-    t.boolean "isDamaged",              null: false
-    t.boolean "isSeparated",            null: false
+    t.boolean "isDamaged",              default: false, null: false
+    t.boolean "isSeparated",            default: false, null: false
     t.float   "latitude",    limit: 24
     t.float   "longitude",   limit: 24
+    t.integer "shipment_id"
   end
 
   create_table "shipments", force: true do |t|
@@ -31,11 +32,12 @@ ActiveRecord::Schema.define(version: 20151122004808) do
     t.string  "description"
     t.integer "bol"
     t.string  "custody"
-    t.boolean "hasDamaged",              null: false
-    t.boolean "hasSeparated",            null: false
-    t.boolean "isLate",                  null: false
+    t.boolean "hasDamaged",              default: false, null: false
+    t.boolean "hasSeparated",            default: false, null: false
+    t.boolean "isLate",                  default: false, null: false
     t.float   "latitude",     limit: 24
     t.float   "longitude",    limit: 24
+    t.string  "origin"
   end
 
 end
