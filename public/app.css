@@ -87,3 +87,7 @@ br {
    display: block;
    margin: 5px 0;
 }
+
+h1 {
+  text-align: center 
+}
