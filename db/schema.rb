@@ -11,16 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151122063752) do
+ActiveRecord::Schema.define(version: 20151122161116) do
 
   create_table "pallets", force: true do |t|
-    t.string   "name"
-    t.float    "latitude",   limit: 24
-    t.float    "longitude",  limit: 24
-    t.string   "device_id"
-    t.datetime "time"
-    t.integer  "seq_number"
-    t.integer  "tilt"
+    t.string  "name"
+    t.float   "latitude",   limit: 24
+    t.float   "longitude",  limit: 24
+    t.string  "device_id"
+    t.integer "seq_number"
+    t.integer "tilt"
+    t.integer "time"
   end
 
   create_table "shipments", force: true do |t|

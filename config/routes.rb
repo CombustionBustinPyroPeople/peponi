@@ -1,6 +1,6 @@
 Ebenezer::Application.routes.draw do
 
-  namespace :api, defaults: {format: "json"} do
+  namespace :api do
     namespace :v1 do
       get 'pallets',         to: 'pallets#get_all'
       get 'pallets/:id',     to: 'pallets#get'

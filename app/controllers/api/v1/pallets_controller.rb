@@ -15,12 +15,12 @@ module Api
 
         hash = pallet.as_json
         hash[:shipment] = shipment.as_json
-        return json: hash
+        render json: hash
       end
 
       def get_all
         pallets = Pallet.all
-        return json: pallets
+        render json: pallets
       end
     end
   end
