@@ -28,3 +28,6 @@ config/database.yml
 
 # Ignore .DS_Store
 .DS_Store
+
+# Ignore npm-debug.log
+npm-debug.log
