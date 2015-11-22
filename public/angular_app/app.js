@@ -4,8 +4,14 @@
 angular.module('myApp', [
   'ngRoute',
   'myApp.view1',
-  'myApp.view2'
+  'myApp.view2',
+  'uiGmapgoogle-maps'
 ]).
-config(['$routeProvider', function($routeProvider) {
+config(['$routeProvider', 'uiGmapGoogleMapApiProvider',function($routeProvider, uiGmapGoogleMapApiProvider) {
   $routeProvider.otherwise({redirectTo: '/view1'});
+  uiGmapGoogleMapApiProvider.configure({
+        //    key: 'your api key',
+        v: '3.20', //defaults to latest 3.X anyhow
+        libraries: 'weather,geometry,visualization'
+    });
 }]);
